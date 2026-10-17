@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Órdenes de Compra SAP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="cabecera">
+      <div>
+        <h1>Agente de Órdenes de Compra</h1>
+        <p class="sub">Reto 03 · Periferia IT Group · SAP simulado</p>
+      </div>
+      <div class="estado">
+        <span id="modelo" class="chip">conectando…</span>
+        <span id="tokens" class="chip">0 tokens</span>
+        <button id="nueva" class="secundario" type="button">Nueva sesión</button>
+      </div>
+    </header>
+
+    <main id="chat" class="chat" aria-live="polite">
+      <section class="bienvenida">
+        <p>Pídeme que procese una solicitud, por ejemplo:</p>
+        <div class="sugerencias">
+          <button type="button" class="sugerencia">Procesa la solicitud sol-001</button>
+          <button type="button" class="sugerencia">Procesa la solicitud "sol-004". Muéstrame la OC como quedaría en SAP, qué validaciones pasó y cuáles no, y no la crees hasta que yo lo confirme.</button>
+          <button type="button" class="sugerencia">Procesa sol-003</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="confirmacion" class="confirmacion" hidden>
+      <strong>⚠ El agente pide tu confirmación.</strong>
+      <span>Revisa las excepciones antes de responder.</span>
+      <div class="acciones">
+        <button id="confirmar" type="button">Confirmo la creación de la OC</button>
+        <button id="rechazar" type="button" class="secundario">No confirmo</button>
+      </div>
+    </div>
+
+    <form id="formulario" class="formulario">
+      <textarea id="entrada" rows="2" placeholder="Escribe un mensaje… (Enter envía, Shift+Enter salto de línea)" maxlength="4000"></textarea>
+      <button id="enviar" type="submit">Enviar</button>
+    </form>
+
+    <script src="app.js"></script>
+  </body>
+</html>

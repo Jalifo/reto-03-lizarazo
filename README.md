@@ -2,8 +2,7 @@
 
 Agente que lee el paquete de una solicitud de compra, lo valida contra los maestros con las reglas RC1–RC10, construye la OC, genera la evidencia de aprobación y crea la orden en un SAP simulado. Pide confirmación humana cuando hay excepciones.
 
-**Link de prueba:** `PENDIENTE — completar con la URL pública`
-**Clave de acceso al link:** `PENDIENTE — solo si se define APP_ACCESS_KEY`
+**Link de prueba:** `https://reto-03-lizarazo.onrender.com/`
 
 ## Requisitos
 

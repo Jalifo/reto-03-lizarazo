@@ -58,7 +58,11 @@ Implementado en `src/agent/ciclo.ts`, sin frameworks:
 
 - **Proveedor:** Anthropic. **Modelo:** `claude-sonnet-5-5`, configurable con `LLM_MODELO`.
 - **Por qué:** el reto exige encadenar varias herramientas en orden, respetar reglas estrictas ("no afirmes valores que no vengan de una herramienta") y presentar el resultado en tablas en español. Para eso pesa más la confiabilidad en el uso de herramientas que el costo por token. Como el adaptador es intercambiable (`src/llm/adapter.ts`), se puede probar un modelo más económico cambiando una variable de entorno.
-- **Costo estimado por caso procesado: PENDIENTE.** No se incluyen cifras sin datos reales. El método es:
+- **Costo estimado por caso procesado: el gasto total en la consola del proveedor durante todo el desarrollo y las pruebas del mes (simulacro previo, pruebas locales del chat y pruebas del link desplegado) fue de **USD 0,48**. Es un gasto agregado, no un costo por caso.
+- **Costo por caso: método de medición.** Cada sesión del chat muestra sus tokens de entrada y de salida (en la cabecera del chat y en `GET /api/sessions/:id`). Para un caso aislado se abre una sesión nueva, se procesa ese caso y se aplica la tarifa vigente del modelo:
+  `costo por caso = (tokens de entrada × tarifa de entrada + tokens de salida × tarifa de salida) / 1.000.000`
+- **Qué determina el costo:** cada turno reenvía al modelo el historial completo de la sesión, así que el costo crece con la longitud de la conversación. Por eso se recomienda una sesión por caso. Las palancas de control son `MAX_TOKENS_SESION`, `MAX_ITERACIONES` y la elección de modelo (`LLM_MODELO`).
+- **Tope de gasto real:** el saldo prepagado de la cuenta del proveedor actúa como límite duro; además, la aplicación corta cada sesión al llegar a `MAX_TOKENS_SESION`.
   1. Procesar cada caso en el chat y leer los tokens de entrada y salida de la sesión. Aparecen en la cabecera del chat y en `GET /api/sessions/:id`.
   2. Aplicar la tarifa vigente del modelo elegido, tomada de la consola del proveedor:
      `costo por caso = (tokens de entrada × tarifa de entrada + tokens de salida × tarifa de salida) / 1.000.000`

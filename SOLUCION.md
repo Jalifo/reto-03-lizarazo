@@ -206,8 +206,7 @@ Es, además, un hallazgo típico de auditoría.
   - Generación del código TypeScript.
   - Ejecución de `demo.ts`, el typecheck y la prueba del ciclo para verificar los 6 casos.
   - Borradores de README y de este documento.
-- **Revisión y decisiones propias:** _completar por Javier: qué revisó, qué decidió y qué cambió._
-- **Qué se descartó de lo propuesto y por qué:**
+- Revisión y decisiones propias: elegí el reto 3 por su foco en controles, integración y riesgo. Revisé el PRD y los resultados de `demo.ts` contra lo esperado en cada caso. Ejecuté la aplicación en local, probé el chat con el modelo real y detecté que los mensajes del chat se mostraban recortados; pedí la corrección y la verifiqué. Decidí publicar el repositorio y desplegar en Render con la clave del modelo solo como variable de entorno.
   - Pasar el `paquete` completo del modelo a `oc_validar` y confiar en él: se descartó por el riesgo de alteración (sección 8).
   - Usar el SDK oficial y un framework web: se descartaron para reducir dependencias y hacer el ciclo explícito.
   - Evaluar RC3 con el tope del aprobador en cualquier centro: se descartó porque dejaba pasar sol-003.
